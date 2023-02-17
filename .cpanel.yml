@@ -3,7 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/useradmin/api.mosaicandtiledepot.com/
     - /usr/local/cpanel/3rdparty/bin/git checkout --theirs .
-    - /bin/cp .env.example .env
+    - /bin/cp main/.env.example main/.env
     - /usr/local/cpanel/3rdparty/bin/git add .
     - /usr/local/cpanel/3rdparty/bin/git commit -m "changes in pro"
 metadata:
