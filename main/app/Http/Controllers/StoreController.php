@@ -32,8 +32,7 @@ class StoreController extends Controller
                 // if the user is a seller, get only the stores with the user_id same as the current user's id
                 return $query->where('user_id', $user->id);
             })
-            ->where('status', 1)
-            ->get();
+            ->where('status', 1);
 
         foreach ($params as $key => $value) if ($value != '') $items->where($key, 'LIKE', $value . "%");
 
