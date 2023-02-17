@@ -12,7 +12,7 @@ class Store extends  Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'quantity_elements', 'address', 'status', 'qr',
+        'name', 'quantity_elements', 'address', 'status', 'qr', 'user_id',
     ];
 
     protected $dates = ['created_at', 'updated_at'];
