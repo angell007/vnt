@@ -8,6 +8,7 @@ metadata:
     author: "Danilo Grisalez"
 post_deploy:
     - /usr/local/cpanel/3rdparty/bin/git checkout --theirs .
+    - /bin/cp .env.example .env
 pre_deploy:
     - "echo 'Pre up files...'"
 hooks:
