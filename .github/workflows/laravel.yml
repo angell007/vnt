@@ -14,6 +14,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ftp.mosaicandtiledepot.com
+        server: mosaicandtiledepot.com
         username: root@mosaicandtiledepot.com
         password: localhost007
