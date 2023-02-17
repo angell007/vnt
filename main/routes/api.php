@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Mail\EmailInventory;
 use App\Models\Inventory;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Mail;
+
 // use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -27,17 +30,13 @@ Route::prefix("auth")->group(
 
 
 Route::get('preview', function () {
-    
-    $inventory = Inventory::find(2);
-    $user = $inventory->user->name;
-    $data = ['email' => 'mdgrisalez@misena.edu.co', 'vendor' => $inventory->user->name, 'code' => $inventory->id];
-    
-    // $data = ['email' => 'angellphp@gmail.com', 'vendor' => 'Juanito alimania', 'code' => '123456'];
-    
-    Mail::to($data['email'])->send(new EmailInventory($data));
+
+  $inventory = Inventory::find(2);
+  $user = $inventory->user->name;
+  $data = ['email' => 'mdgrisalez@misena.edu.co', 'vendor' => $inventory->user->name, 'code' => $inventory->id];
+  Mail::to($data['email'])->send(new EmailInventory($data));
 
   return response()->json($user);
-  
 });
 
 Route::get('qr-code-g', function () {
@@ -52,15 +51,6 @@ Route::get('qr-code-g', function () {
 
 
 Route::get('/clear-cache', function () {
-    
-    // \Log::emergency('emer');
-    // \Log::alert('alert');
-    // \Log::critical('critical');
-    // \Log::error('error');
-    // \Log::warning('warn');
-    // \Log::notice('notic');
-    // \Log::info('info');
-    // \Log::debug('debug');
 
   $exitCode = Artisan::call('config:clear');
 
