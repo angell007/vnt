@@ -7,7 +7,6 @@ use App\Models\Store;
 use App\Traits\Qr;
 use App\Traits\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\Calculation\LookupRef\Sort;
 
@@ -22,16 +21,19 @@ class StoreController extends Controller
 
         unset($params['page']);
 
-        $admins = DB::table('users')->select('id')
-            ->where(function ($q) {
-                $q->where('user_type', '<>', 'Seller')
-                    ->orWhere('id', Auth::user()->id);
-            })
-            ->pluck('id');
+        $user = Auth::user(); // assuming the current user is authenticated
+        $role = $user->user_type; // assuming the user has a 'role' field
 
         $items = Store::select('name', 'address', 'status', 'id', 'qr')
-            ->whereIn('user_id', $admins)
-            ->where('status', 1);
+            ->when($role == 'Warehouse', function ($query) {
+                // if the user is a warehouse, get all stores
+                return $query;
+            }, function ($query) use ($user) {
+                // if the user is a seller, get only the stores with the user_id same as the current user's id
+                return $query->where('user_id', $user->id);
+            })
+            ->where('status', 1)
+            ->get();
 
         foreach ($params as $key => $value) if ($value != '') $items->where($key, 'LIKE', $value . "%");
 
