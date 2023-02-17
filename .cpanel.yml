@@ -2,13 +2,15 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/useradmin/api.mosaicandtiledepot.com/
+    - /usr/local/cpanel/3rdparty/bin/git checkout --theirs .
+    - /bin/cp .env.example .env
+    - /usr/local/cpanel/3rdparty/bin/git add .
+    - /usr/local/cpanel/3rdparty/bin/git commit -m "changes in pro"
 metadata:
     name: "App Qr"
     version: "1.0"
     author: "Danilo Grisalez"
 post_deploy:
-    - /usr/local/cpanel/3rdparty/bin/git checkout --theirs .
-    - /bin/cp .env.example .env
 pre_deploy:
     - "echo 'Pre up files...'"
 hooks:
