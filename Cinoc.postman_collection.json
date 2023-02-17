@@ -1,45 +1,4937 @@
 {
 	"info": {
-		"_postman_id": "586e7082-6bbd-4a7c-bc7f-53d02a425db4",
-		"name": "Cinoc",
+		"_postman_id": "4950a4b8-271c-452a-bcde-4c06f70028c1",
+		"name": "ActiveCampaign API v3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12526611"
 	},
 	"item": [
 		{
-			"name": "home",
-			"event": [
+			"name": "Accounts",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							""
+					"name": "Retrieve an account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
 						],
-						"type": "text/javascript"
-					}
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null,
+									"description": "Account id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"account\": {\n    \"name\": \"Example Account\",\n    \"accountUrl\": \"https://www.example.com\",\n    \"fields\": [\n      {\n        \"customFieldId\": 9,\n        \"fieldValue\": \"500-1000\"\n      },\n      {\n        \"customFieldId\": 20,\n        \"fieldValue\": 1234,\n        \"fieldCurrency\": \"GBP\"\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an account",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Account id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk delete accounts",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts/bulk_delete/",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts",
+								"bulk_delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"account\": {\n    \"name\": \"Exmaple Account\",\n    \"accountUrl\": \"https://www.example.com\",\n    \"fields\": [\n      {\n        \"customFieldId\": 9,\n        \"fieldValue\": \"500-1000\"\n      },\n      {\n        \"customFieldId\": 20,\n        \"fieldValue\": 1234,\n        \"fieldCurrency\": \"GBP\"\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "The Account id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an account note",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"note\": {\n    \"note\": \"Note for the account\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts/:id/notes",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts",
+								":id",
+								"notes"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Account id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an account note",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"note\": {\n        \"note\": \"Update with more info\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/accounts/:id/notes/:noteId",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"accounts",
+								":id",
+								"notes",
+								":noteId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null,
+									"description": "Account id"
+								},
+								{
+									"key": "noteId",
+									"value": null,
+									"description": "Note id"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://bolsaempleo.iescinoc.edu.co/",
-					"protocol": "https",
-					"host": [
-						"bolsaempleo",
-						"iescinoc",
-						"edu",
-						"co"
-					],
-					"path": [
-						""
+			]
+		},
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "Custom Fields and Values",
+					"item": [
+						{
+							"name": "Field Values",
+							"item": [
+								{
+									"name": "Bulk Add Field Values",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"fieldOptions\": [\n        {\n            \"orderid\": 1,\n            \"value\": \"Option A\",\n            \"label\": \"Option A\",\n            \"isdefault\": false,\n            \"field\": \"31\"\n        },\n        {\n            \"orderid\": 2,\n            \"value\": \"Option B\",\n            \"label\": \"Option B\",\n            \"isdefault\": false,\n            \"field\": \"31\"\n        },\n        {\n            \"orderid\": 3,\n            \"value\": \"Option C\",\n            \"label\": \"Option C\",\n            \"isdefault\": false,\n            \"field\": \"31\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fieldOption/bulk",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fieldOption",
+												"bulk"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Custom Field Value For Contact",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"fieldValue\": {\n        \"contact\": 6,\n        \"field\": 26,\n        \"value\": \"||Option A||Option C||\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fieldValues",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fieldValues"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "List All Custom Field Values",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fieldValues",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fieldValues"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Field Relationships",
+							"item": [
+								{
+									"name": "Add Field Relationship",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"fieldRel\": {\n        \"field\": 7,\n        \"relid\": 0\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fieldRels",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fieldRels"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Field Relationship",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fieldRels/:fieldRelId",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fieldRels",
+												":fieldRelId"
+											],
+											"variable": [
+												{
+													"key": "fieldRelId",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List All Custom Fields",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"fields"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Custom Field",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"field\": {\n        \"title\": \"checkbox title\",\n        \"descript\": \"Here is the description\",\n        \"type\": \"checkbox\",\n        \"isrequired\": false,\n        \"perstag\": \"uniqueCustomTag\",\n        \"group\": 1,\n        \"show_in_list\": true,\n        \"rows\": 0,\n        \"cols\": 0,\n        \"visible\": true,\n        \"ordernum\": 0\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"fields"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Add Checkbox Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"title\": \"checkbox title\",\n        \"descript\": \"Here is the description\",\n        \"type\": \"checkbox\",\n        \"isrequired\": false,\n        \"perstag\": \"Personalized Tag\",\n        \"group\": 1,\n        \"show_in_list\": true,\n        \"rows\": 0,\n        \"cols\": 0,\n        \"visible\": true,\n        \"ordernum\": 0\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Dropdown Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"title\": \"dropdown title\",\n        \"descript\": \"Here is the description\",\n        \"type\": \"dropdown\",\n        \"isrequired\": false,\n        \"perstag\": \"Personalized Tag\",\n        \"group\": 1,\n        \"show_in_list\": true,\n        \"rows\": 0,\n        \"cols\": 0,\n        \"visible\": true,\n        \"ordernum\": 0\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Listbox (multiselect) Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"title\": \"listbox title\",\n        \"descript\": \"Here is the description\",\n        \"type\": \"listbox\",\n        \"isrequired\": false,\n        \"perstag\": \"Personalized Tag\",\n        \"group\": 1,\n        \"show_in_list\": true,\n        \"rows\": 0,\n        \"cols\": 0,\n        \"visible\": true,\n        \"ordernum\": 0\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Radio Button Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"title\": \"radio title\",\n        \"descript\": \"Here is the description\",\n        \"type\": \"radio\",\n        \"isrequired\": false,\n        \"perstag\": \"Personalized Tag\",\n        \"group\": 1,\n        \"show_in_list\": true,\n        \"rows\": 0,\n        \"cols\": 0,\n        \"visible\": true,\n        \"ordernum\": 0\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Date Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"type\": \"date\",\n        \"title\": \"Date Field Title\",\n        \"descript\": \"Field description\",\n        \"isrequired\": 1,\n        \"perstag\": \"Personalized Tag\",\n        \"defval\": \"2023-01-01\",\n        \"visible\": 1,\n        \"ordernum\": 1\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Text Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"type\": \"text\",\n        \"title\": \"Field Title\",\n        \"descript\": \"Field description\",\n        \"isrequired\": 1,\n        \"perstag\": \"Personalized Tag\",\n        \"defval\": \"Defaut Value\",\n        \"visible\": 1,\n        \"ordernum\": 1\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Text Area Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"type\": \"textarea\",\n        \"title\": \"Field Title\",\n        \"descript\": \"Field description\",\n        \"perstag\": \"Personalized Tag\",\n        \"defval\": \"Defaut Value\",\n        \"visible\": 1,\n        \"ordernum\": 1\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Hidden Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"type\": \"hidden\",\n        \"title\": \"Field Title\",\n        \"descript\": \"Field description\",\n        \"isrequired\": 1,\n        \"perstag\": \"Personalized Tag\",\n        \"defval\": \"Defaut Value\",\n        \"visible\": 1,\n        \"ordernum\": 1\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Add Datetime (ISO) Field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"field\": {\n        \"type\": \"datetime\",\n        \"title\": \"Field Title\",\n        \"descript\": \"Field description\",\n        \"isrequired\": 1,\n        \"perstag\": \"Personalized Tag\",\n        \"defval\": \"2020-05-19T02:45:00-05:00\",\n        \"visible\": 1,\n        \"ordernum\": 1\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"fields"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Delete Custom Field",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"field\": {\n        \"type\": \"text\",\n        \"title\": \"TextField2\",\n        \"descript\": \"Second text field\",\n        \"perstag\": \"Second Field\",\n        \"visible\": 1\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields/:fieldID",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"fields",
+										":fieldID"
+									],
+									"variable": [
+										{
+											"key": "fieldID",
+											"value": "ID of the field being deleted"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Custom Field",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"field\": {\n        \"type\": \"textarea\",\n        \"title\": \"Title\",\n        \"descript\": \"Field  description\",\n        \"perstag\": \"Personalized Tag\",\n        \"defval\": \"Defaut Value\",\n        \"show_in_list\": 1,\n        \"rows\": 2,\n        \"cols\": 2,\n        \"visible\": 1,\n        \"service\": \"google\",\n        \"ordernum\": 3\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/fields/:fieldID",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"fields",
+										":fieldID"
+									],
+									"variable": [
+										{
+											"key": "fieldID",
+											"value": "ID of the field being updated"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Automations",
+					"item": [
+						{
+							"name": "Get Contact Automation Entry Counts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/automationEntryCounts",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"contacts",
+										":contactId",
+										"automationEntryCounts"
+									],
+									"variable": [
+										{
+											"key": "contactId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get an Automation a Contact is in",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contactAutomations/:contactAutomationID",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"contactAutomations",
+										":contactAutomationID"
+									],
+									"variable": [
+										{
+											"key": "contactAutomationID",
+											"value": null,
+											"description": "ID of the contactAutomation to retrieve\n\n"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Contact to an Automation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contactAutomation\": {\n        \"contact\": \"117\",\n        \"automation\": \"42\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contactAutomations",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"contactAutomations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Contact from an Automation",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contactAutomation\": {\n        \"contact\": \"117\",\n        \"automation\": \"42\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contactAutomations/:contactAutomationID",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"contactAutomations",
+										":contactAutomationID"
+									],
+									"variable": [
+										{
+											"key": "contactAutomationID",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contact Automations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/contactAutomations",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"contacts",
+										":contactId",
+										"contactAutomations"
+									],
+									"variable": [
+										{
+											"key": "contactId",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Contacts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/contactData",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"contactData"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts//:contactId/contactTags",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								"",
+								":contactId",
+								"contactTags"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact by Email with Tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts?filters[email]=user@test.com&include=contactTags.tag",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "filters[email]",
+									"value": "user@test.com"
+								},
+								{
+									"key": "include",
+									"value": "contactTags.tag"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Bounce Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/bounceLogs",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"bounceLogs"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Data Goals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/contactGoals",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"contactGoals"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Lists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/contactLists",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"contactLists"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/contactLogs",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"contactLogs"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Deal List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/contactDeals",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"contactDeals"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Deals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/deals",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"deals"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Field Values",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/fieldValues",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"fieldValues"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Geo Ips",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/geoIps",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"geoIps"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Notes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/notes",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"notes"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Organization",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/organization",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"organization"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Account Contacts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/accountContacts",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"accountContacts"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Plus Append",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/plusAppend",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"plusAppend"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact Tracking Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/trackingLogs",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId",
+								"trackingLogs"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contact\": {\n\t\t\"email\": \"johndoe@example.com\",\n\t\t\"firstName\": \"John\",\n\t\t\"lastName\": \"Doe\",\n\t\t\"phone\": \"7223224241\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sync Contact Data",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contact\": {\n\t\t\"email\": \"johndoe@example.com\",\n\t\t\"firstName\": \"John\",\n\t\t\"lastName\": \"Doe\",\n\t\t\"phone\": \"7223224241\",\n        \"fieldValues\": [\n            {\n                \"field\": \"2\",\n                \"value\": \"Albany\"\n            },\n            {\n                \"field\": \"3\",\n                \"value\": \"Georgia\"\n            }\n        ]\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contact/sync",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contact",
+								"sync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add contact to list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contactList\": {\n        \"list\": 1,\n        \"contact\": 21,\n        \"status\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contactLists",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contactLists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Contact",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contacts",
+								":contactId"
+							],
+							"variable": [
+								{
+									"key": "contactId",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Import",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contacts\": [\n    {\n        \"email\": \"johndoe@test.com\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"phone\": \"5555551212\",\n        \"tags\": [ \"testtag1\"],\n        \"fields\": [ { \"id\": 18, \"value\": \"01-01-2021\"}],\n        \"subscribe\": [{\"listid\": 1}],\n        \"unsubscribe\": null\n    },\n    {\n        \"email\": \"test2+johndoe@test.com\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe2\",\n        \"phone\": \"5555551212\",\n        \"tags\": [ \"testtag1\"],\n        \"fields\": [ { \"id\": 18, \"value\": \"01-01-2021\"}],\n        \"subscribe\": [{\"listid\": 1}],\n        \"unsubscribe\": null\n    }\n    ],\n    \"callback\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/import/bulk_import",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"import",
+								"bulk_import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Import Status Info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/import/info?batchId=026bcb88-fc4d-4b5e-9b8a-9c080b406ad7",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"import",
+								"info"
+							],
+							"query": [
+								{
+									"key": "batchId",
+									"value": "026bcb88-fc4d-4b5e-9b8a-9c080b406ad7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Import Status List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/import/bulk_import",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"import",
+								"bulk_import"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Campaigns",
+			"item": [
+				{
+					"name": "Get Campaigns",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/campaigns",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Campaign by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/campaigns/:campaignID",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"campaigns",
+								":campaignID"
+							],
+							"variable": [
+								{
+									"key": "campaignID",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Links Associated to Campaign",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/campaigns/:campaignID/links",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"campaigns",
+								":campaignID",
+								"links"
+							],
+							"variable": [
+								{
+									"key": "campaignID",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Get List of Messages",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/messages",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a Message",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/messages/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"messages",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "Message ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"message\": {\n\t    \"fromname\": \"AC Admin\",\n        \"fromemail\": \"noreply@example.com\",\n        \"reply2\": \"hello@example.com\",\n        \"subject\": \"You are subscribing to %LISTNAME%\",\n        \"preheader_text\": \"Pre-header Text\",\n        \"text\": \"hello\",\n        \"html\": \"<div>hello</div>\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/messages",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Message",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"message\": {\n\t    \"fromname\": \"AC Admin\",\n        \"fromemail\": \"noreply@example.com\",\n        \"reply2\": \"hello@example.com\",\n        \"subject\": \"You are subscribing to %LISTNAME%\",\n        \"preheader_text\": \"Pre-header Text\",\n        \"text\": \"hello\",\n        \"html\": \"<div>hello</div>\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/messages/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"messages",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "id of the message to be deleted"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Message",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"message\": {\n\t    \"fromname\": \"AC Admin\",\n        \"fromemail\": \"noreply@example.com\",\n        \"reply2\": \"hello@example.com\",\n        \"subject\": \"You are subscribing to %LISTNAME%\",\n        \"preheader_text\": \"Pre-header Text\",\n        \"text\": \"hello\",\n        \"html\": \"<div>hello</div>\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/messages/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"messages",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "id of the message to be updated"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "List all tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Your ActiveCampaign API Token",
+								"key": "Api-Token",
+								"type": "text",
+								"value": "{{yourApiKey}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/tags",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Your ActiveCampaign API Token",
+								"key": "Api-Token",
+								"type": "text",
+								"value": "{{yourApiKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tag\": {\n        \"tag\": \"tag3\",\n        \"tagType\": \"contact\",\n        \"description\": \"testing adding a tag using the API\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/tags",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a tag",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"description": "Your ActiveCampaign API Token",
+								"key": "Api-Token",
+								"type": "text",
+								"value": "{{yourApiKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tag\": {\n        \"tag\": \"tag3 updated\",\n        \"tagType\": \"contact\",\n        \"description\": \"testing updating a tag using the API\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/tags/:tagId",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"tags",
+								":tagId"
+							],
+							"variable": [
+								{
+									"key": "tagId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a tag",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"description": "Your ActiveCampaign API Token",
+								"key": "Api-Token",
+								"type": "text",
+								"value": "{{yourApiKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tag\": {\n        \"tag\": \"tag3\",\n        \"tagType\": \"contact\",\n        \"description\": \"testing adding a tag using the API\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/tags/:tagId",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"tags",
+								":tagId"
+							],
+							"variable": [
+								{
+									"key": "tagId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a tag to a contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Your ActiveCampaign API Token",
+								"key": "Api-Token",
+								"type": "text",
+								"value": "{{yourApiKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contactTag\": {\n        \"contact\": \"2\",\n        \"tag\": \"3\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contactTags",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"contactTags"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lists",
+			"item": [
+				{
+					"name": "Get Lists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/lists?limit=5",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"list\": {\n\t\t\"name\": \"Test List 1\",\n\t\t\"stringid\": \"test-list-1\",\n\t\t\"sender_url\": \"https://myhost.activehosted.com\",\n\t\t\"sender_reminder\": \"This is a test.\",\n\t\t\"user\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/lists",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"lists"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Custom Objects",
+			"item": [
+				{
+					"name": "Schemas",
+					"item": [
+						{
+							"name": "Parent and Child Schemas",
+							"item": [
+								{
+									"name": "Create a public schema",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"schema\": {\n    \"slug\": \"event-tickets\",\n    \"appId\": \"cxapp-studio-app-id\",\n    \"labels\": {\n      \"singular\": \"Event Ticket\",\n      \"plural\": \"Event Tickets\"\n    },\n    \"description\": \"Event Tickets\",\n    \"fields\": [\n      {\n        \"id\": \"name\",\n        \"labels\": {\n          \"singular\": \"Name\",\n          \"plural\": \"Names\"\n        },\n        \"type\": \"textarea\"\n      }\n    ],\n    \"relationships\": [\n      {\n        \"id\": \"primary-contact\",\n        \"labels\": {\n          \"singular\": \"Primary Contact\",\n          \"plural\": \"Primary Contacts\"\n        },\n        \"description\": \"Primary contact that owns a ticket\",\n        \"namespace\": \"contacts\"\n      }\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/schemas/public",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"customObjects",
+												"schemas",
+												"public"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create a child schema",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/schemas/:parentSchemaId/child",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"customObjects",
+												"schemas",
+												":parentSchemaId",
+												"child"
+											],
+											"variable": [
+												{
+													"key": "parentSchemaId",
+													"value": null,
+													"description": "Id of the parent schema the new child schema will extend"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "List all schemas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/schemas",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"schemas"
+									],
+									"query": [
+										{
+											"key": "orders[createdTimestamp]",
+											"value": "DESC",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listing records for a Schema",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaID",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"records",
+										":schemaID"
+									],
+									"query": [
+										{
+											"key": "filters[relationships.account][eq]",
+											"value": "accountID",
+											"disabled": true
+										},
+										{
+											"key": "orders[createdTimestamp]",
+											"value": "DESC",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "schemaID",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Filtering By Account ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaID?filters[relationships.account][eq]=accountID",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"customObjects",
+												"records",
+												":schemaID"
+											],
+											"query": [
+												{
+													"key": "filters[relationships.account][eq]",
+													"value": "accountID"
+												},
+												{
+													"key": "orders[createdTimestamp]",
+													"value": "DESC",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "schemaID",
+													"value": null
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Filtering By Deal ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaID?filters[relationships.deal][eq]=123",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"customObjects",
+												"records",
+												":schemaID"
+											],
+											"query": [
+												{
+													"key": "filters[relationships.deal][eq]",
+													"value": "123"
+												},
+												{
+													"key": "orders[createdTimestamp]",
+													"value": "DESC",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "schemaID",
+													"value": null
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Filtering By Primary Contact ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaID?filters[relationships.primary-contact][eq]=22",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"customObjects",
+												"records",
+												":schemaID"
+											],
+											"query": [
+												{
+													"key": "filters[relationships.primary-contact][eq]",
+													"value": "22"
+												},
+												{
+													"key": "orders[createdTimestamp]",
+													"value": "DESC",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "schemaID",
+													"value": null
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Update Schema",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"schema\": {\n        \"id\": \"2f1f2cc4-87c7-42f3-9aee-2c2489cb744d\",\n        \"slug\": \"my-object\",\n        \"visibility\": \"private\",\n        \"labels\": {\n            \"singular\": \"My Object2\",\n            \"plural\": \"My Objects2\"\n        },\n        \"description\": \"Sample Schema Update\",\n        \"fields\": [\n            {\n                \"id\": \"my-number-field\",\n                \"slug\": \"my-number-field\",\n                \"labels\": {\n                    \"singular\": \"Number\",\n                    \"plural\": \"Numbers\"\n                },\n                \"type\": \"number\",\n                \"required\": false,\n                \"scale\": 0\n            }\n        ],\n        \"icons\": {\n            \"default\": \"https://d226aj4ao1t61q.cloudfront.net/n9mayqo2d_customobject.png\"\n        },\n        \"relationships\": [\n            {\n                \"id\": \"primary-contact\",\n                \"labels\": {\n                    \"singular\": \"Primary Contact\",\n                    \"plural\": \"Primary Contacts\"\n                },\n                \"description\": \"Primary contact to this object\",\n                \"namespace\": \"contacts\",\n                \"hasMany\": false\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/schemas/:schemaId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"schemas",
+										":schemaId"
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Schema",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"schema\": {\n        \"labels\": {\n            \"singular\": \"My Object\",\n            \"plural\": \"My Objects\"\n        },\n        \"slug\": \"my-object\",\n        \"description\": \"Sample Schema\",\n        \"fields\": [\n            {\n                \"id\": \"my-number-field\",\n                \"slug\": \"my-number-field\",\n                \"labels\": {\n                    \"singular\": \"Number\",\n                    \"plural\": \"Numbers\"\n                },\n                \"type\": \"number\",\n                \"scale\": 0,\n                \"isRequired\": false\n            }\n        ],\n        \"relationships\": [\n            {\n                \"id\": \"primary-contact\",\n                \"labels\": {\n                    \"singular\": \"Primary Contact\",\n                    \"plural\": \"Primary Contacts\"\n                },\n                \"description\": \"Primary contact to this object\",\n                \"namespace\": \"contacts\",\n                \"hasMany\": false\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/schemas",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"schemas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Schema by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/schemas/:schemaId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"schemas",
+										":schemaId"
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Schema",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/schemas/:schemaId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"schemas",
+										":schemaId"
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": "",
+											"description": "Id of schema to be deleted"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Managing Records",
+					"item": [
+						{
+							"name": "Get a list of records",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaId?filters[relationships.primary-contact][eq]=14",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"records",
+										":schemaId"
+									],
+									"query": [
+										{
+											"key": "filters[relationships.primary-contact][eq]",
+											"value": "14"
+										}
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create or Update a record",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \n    \"record\": {\n        \"id\": \"627b1346-be6c-469d-9806-a003db9b0b20\",\n        \"externalId\": \"test-obj-555\",\n        \"fields\": [ {\n            \"id\": \"my-number-field\",\n            \"value\": 123\n        } ],\n        \"relationships\": {\n            \"primary-contact\": [ 5 ]\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"records",
+										":schemaId"
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get record by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.activehosted.com/api/{{apiVersion}}/customObjects/records/:schemaId/:recordId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"activehosted",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"records",
+										":schemaId",
+										":recordId"
+									],
+									"query": [
+										{
+											"key": "filters[relationships.primary-contact][eq]",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "20",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "orders[createdTimestamp]",
+											"value": "DESC",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										},
+										{
+											"key": "recordId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete record by id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaId/:recordId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"records",
+										":schemaId",
+										":recordId"
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										},
+										{
+											"key": "recordId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get record by external id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaId/external/:externalId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"records",
+										":schemaId",
+										"external",
+										":externalId"
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										},
+										{
+											"key": "externalId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete record by external id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/customObjects/records/:schemaId/external/:externalId",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"customObjects",
+										"records",
+										":schemaId",
+										"external",
+										":externalId"
+									],
+									"variable": [
+										{
+											"key": "schemaId",
+											"value": ""
+										},
+										{
+											"key": "externalId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Get Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/groups",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group Limits",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/groupLimits",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"groupLimits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"group\": {\n\t\t\"title\": \"Test Group 2\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/groups",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/groups/:groupId",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"groups",
+								":groupId"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users By Group",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/groups/:groupId/userGroups",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"groups",
+								":groupId",
+								"userGroups"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/users",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {\n\t\t\"username\": \"jdoe2\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"johndoe2@example.com\",\n        \"password\": \"myPa$$w0rd\",\n        \"group\": 3\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/users",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deals",
+			"item": [
+				{
+					"name": "Deal Roles",
+					"item": [
+						{
+							"name": "Create a deal role",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"title\": \"Head Of Sales\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/dealRoles",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"dealRoles"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create a deal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deal\": {\n    \"contact\": \"5\",\n    \"account\": \"2\",\n    \"description\": \"This deal is an important deal\",\n    \"currency\": \"usd\",\n    \"group\": \"2\",\n    \"owner\": \"2\",\n    \"percent\": null,\n    \"stage\": \"1\",\n    \"status\": 0,\n    \"title\": \"AC Deal\",\n    \"value\": 45600,\n    \"fields\": [\n      {\n        \"customFieldId\": 1,\n        \"fieldValue\": \"First field value\"\n      },\n      {\n        \"customFieldId\": 2,\n        \"fieldValue\": \"2008-01-20\"\n      },\n      {\n        \"customFieldId\": 3,\n        \"fieldValue\": 5500,\n        \"fieldCurrency\": \"EUR\"\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a deal note",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"note\": {\n    \"note\": \"Note for the deal\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals/:id/notes",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals",
+								":id",
+								"notes"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null,
+									"description": "Id of the deal note will be added to"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a deal",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve A Deal Activities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals/:id/dealActivities",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals",
+								":id",
+								"dealActivities"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all deals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a deal",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a deal",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deal\": {\n        \"contact\": \"51\",\n        \"account\": \"45\",\n        \"description\": \"This deal is an important deal\",\n        \"currency\": \"usd\",\n        \"group\": \"1\",\n        \"owner\": \"1\",\n        \"percent\": null,\n        \"stage\": \"1\",\n        \"status\": 0,\n        \"title\": \"AC Deal\",\n        \"value\": 45600,\n        \"fields\": [\n            {\n                \"customFieldId\": 1,\n                \"fieldValue\": \"First field value\"\n            },\n            {\n                \"customFieldId\": 2,\n                \"fieldValue\": \"2008-01-20\"\n            },\n            {\n                \"customFieldId\": 3,\n                \"fieldValue\": 8800,\n                \"fieldCurrency\": \"USD\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals/:id",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null,
+									"description": "id of the deal to be updated"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a deal note",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Api-Token",
+								"value": "{{yourApiKey}}",
+								"description": "Your ActiveCampaign API Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"note\": {\n    \"note\": \"Update with more info\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals/:dealId/notes/:noteId",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals",
+								":dealId",
+								"notes",
+								":noteId"
+							],
+							"variable": [
+								{
+									"key": "dealId",
+									"value": null,
+									"description": "Id of the deal note is assigned to"
+								},
+								{
+									"key": "noteId",
+									"value": null,
+									"description": "Id of the note"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk update deal owners",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deals\": [\n        {\n            \"id\": 1,\n            \"ownerId\": 1\n        },\n        {\n            \"id\": 2,\n            \"ownerId\": 1\n        },\n        {\n            \"id\": 3,\n            \"ownerId\": 1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/deals/bulkUpdate",
+							"protocol": "https",
+							"host": [
+								"{{yourAccountName}}",
+								"api-us1",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiVersion}}",
+								"deals",
+								"bulkUpdate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Site & Event Tracking",
+			"item": [
+				{
+					"name": "Event Tracking",
+					"item": [
+						{
+							"name": "Create a new Event (Name Only)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"eventTrackingEvent\": {\n        \"name\": \"Event Name Here\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/eventTrackingEvents",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"eventTrackingEvents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable/Disable Event Tracking",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"eventTracking\": {\n    \"enabled\": true\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/eventTracking",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"eventTracking"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Enable Event Tracking",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"eventTracking\": {\n    \"enabled\": true\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/eventTrackingEvents",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"eventTrackingEvents"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Disable Event Tracking",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Api-Token",
+												"value": "{{yourApiKey}}",
+												"description": "Your ActiveCampaign API Token",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"eventTracking\": {\n    \"enabled\": false\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/eventTrackingEvents",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"eventTrackingEvents"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Track Event",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "actid",
+											"value": "555555555",
+											"description": "Your acct id (see app/settings/tracking)",
+											"type": "text"
+										},
+										{
+											"key": "key",
+											"value": "9fy93qhf8yqy9cy984yrcq94q8f",
+											"description": "Your event key (required)",
+											"type": "text"
+										},
+										{
+											"key": "event",
+											"value": "Event Name Here",
+											"description": "ring to identify your event (required)",
+											"type": "text"
+										},
+										{
+											"key": "eventdata",
+											"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+											"description": "A value you wish to store for the event",
+											"type": "text"
+										},
+										{
+											"key": "visit",
+											"value": "{\"email\":\"johndoe@example.com\"}",
+											"description": "Learn more here: https://help.activecampaign.com/hc/en-us/articles/221870128-An-overview-of-Event-Tracking#event-tracking-example-code",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://trackcmp.net/event",
+									"protocol": "https",
+									"host": [
+										"trackcmp",
+										"net"
+									],
+									"path": [
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Events (Name Only)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/eventTrackingEvents",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"eventTrackingEvents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Event Tracking Status",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/eventTracking",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"eventTracking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Event",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/eventTrackingEvent/:eventName",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"eventTrackingEvent",
+										":eventName"
+									],
+									"variable": [
+										{
+											"key": "eventName",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contact By Event ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/trackingLogs/:eventId/contact",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"trackingLogs",
+										":eventId",
+										"contact"
+									],
+									"variable": [
+										{
+											"key": "eventId",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contact Events and Activities",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/activities?contact=123",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"activities"
+									],
+									"query": [
+										{
+											"key": "contact",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contact's Tracking Logs/Events",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Api-Token",
+										"value": "{{yourApiKey}}",
+										"description": "Your ActiveCampaign API Token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/contacts/:contactId/trackingLogs",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"contacts",
+										":contactId",
+										"trackingLogs"
+									],
+									"variable": [
+										{
+											"key": "contactId",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Site Tracking",
+					"item": [
+						{
+							"name": "Add Domain To WhiteList",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"siteTrackingDomain\": {\n        \"name\": \"example.com\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTrackingDomains",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"siteTrackingDomains"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Domain From WhiteList",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTrackingDomains/:name",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"siteTrackingDomains",
+										":name"
+									],
+									"variable": [
+										{
+											"key": "name",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Site Tracking Code",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTracking/code",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"siteTracking",
+										"code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Site Tracking Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTracking",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"siteTracking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All WhiteListed Domains",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTrackingDomains",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"siteTrackingDomains"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable/Disable Site Tracking",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"siteTracking\": {\n    \"enabled\": true\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTracking",
+									"protocol": "https",
+									"host": [
+										"{{yourAccountName}}",
+										"api-us1",
+										"com"
+									],
+									"path": [
+										"api",
+										"{{apiVersion}}",
+										"siteTracking"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Disable Site Tracking",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"siteTracking\": {\n    \"enabled\": false\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTracking",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"siteTracking"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Enable Site Tracking",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"siteTracking\": {\n    \"enabled\": true\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{yourAccountName}}.api-us1.com/api/{{apiVersion}}/siteTracking",
+											"protocol": "https",
+											"host": [
+												"{{yourAccountName}}",
+												"api-us1",
+												"com"
+											],
+											"path": [
+												"api",
+												"{{apiVersion}}",
+												"siteTracking"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiVersion",
+			"value": "3"
+		},
+		{
+			"key": "yourAccountName",
+			"value": "misena6424",
+			"type": "string"
+		},
+		{
+			"key": "yourApiKey",
+			"value": "21905d1e7b42d70c82609b03e1e091e8b6f5dc2a7b979d619c0ba0963c03684fa15edc5e",
+			"type": "string"
 		}
 	]
 }
