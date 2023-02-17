@@ -4,7 +4,7 @@ deployment:
     - export DEPLOYPATH=/home/useradmin/api.mosaicandtiledepot.com/
     - /usr/local/cpanel/3rdparty/bin/git checkout --theirs .
     - /bin/cp main/.env.example main/.env
-    - composer install
+    - alias composer="php -d allow_url_fopen=1 -d zend.detect_unicode=0 $(which composer)"
     - /usr/local/cpanel/3rdparty/bin/git config --global user.email "mdgrisalez@misena.edu.co"
     - /usr/local/cpanel/3rdparty/bin/git config --global user.name "angell007" .
     - /usr/local/cpanel/3rdparty/bin/git config --global user.password "Angell00-7" .
