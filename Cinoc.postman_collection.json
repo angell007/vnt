@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "586e7082-6bbd-4a7c-bc7f-53d02a425db4",
+		"name": "Cinoc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12526611"
+	},
+	"item": [
+		{
+			"name": "home",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bolsaempleo.iescinoc.edu.co/",
+					"protocol": "https",
+					"host": [
+						"bolsaempleo",
+						"iescinoc",
+						"edu",
+						"co"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
