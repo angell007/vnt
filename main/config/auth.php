@@ -17,10 +17,6 @@ return [
             'driver' => 'jwt',
             'provider' => 'admins',
         ],
-        // 'companies' => [
-        //     'driver' => 'jwt',
-        //     'provider' => 'companies',
-        // ],
     ],
 
 
@@ -33,10 +29,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
-        // 'companies' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Company::class,
-        // ],
     ],
 
 
@@ -47,12 +39,6 @@ return [
             'expire' => 180,
             'throttle' => 180,
         ],
-        // 'companies' => [
-        //     'provider' => 'companies',
-        //     'table' => 'password_resets',
-        //     'expire' => 180,
-        //     'throttle' => 180,
-        // ],
     ],
 
     'password_timeout' => 10800,

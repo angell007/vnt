@@ -9,25 +9,17 @@ use App\Traits\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
 
     use Response;
-    /**
-     * Login usuario y retornar el token
-     * @return token
-     */
+
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
-
-        // Config::set('jwt.user', User::class);
-        // Config::set('auth.providers', ['users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => User::class,
-        // ]]);
     }
 
     public function login(Request $request)
@@ -44,9 +36,9 @@ class AuthController extends Controller
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
 
-            $user = DB::table('users')->select('email', 'name', 'user_type')->where('email', $data['usuario'])->first();
+            $user = DB::table('users')->select('email', 'name')->where('email', $data['usuario'])->first();
 
-            \Log::info('Ha iniciado sesion ' . $user->name );
+            Log::info('Ha iniciado sesion ' . $user->name);
 
             return response()->json(['token' => $token, 'user' => $user])
                 ->header('Authorization', $token)
@@ -61,12 +53,6 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * Logout usuario
-     *
-     * @return void
-     */
-
     public function logout()
     {
         auth()->logout();
@@ -75,19 +61,6 @@ class AuthController extends Controller
             'message' => 'Logged out Successfully.'
         ], 200);
     }
-
-    /**
-     * Obtener el usuario autenticado
-     *
-     * @return Usuario
-     */
-
-
-    /**
-     * Refrescar el token por uno nuevo
-     *
-     * @return token
-     */
 
     public function me()
     {
@@ -120,11 +93,6 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * Retornar el guard
-     *
-     * @return Guard
-     */
     private function guard()
     {
         return Auth::guard();
@@ -137,7 +105,6 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 24,
-            // 'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
 
@@ -149,7 +116,6 @@ class AuthController extends Controller
 
         $user = User::find(auth()->user()->id);
         $user->password = Hash::make(Request()->get('newPassword'));
-        // $user->change_password = 0;
         $user->save();
         return Response()->json(['status' => 'successs', 200]);
     }

@@ -1,15 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\VotanteController;
 use Illuminate\Support\Facades\Route;
-use App\Mail\EmailInventory;
-use App\Models\Inventory;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Mail;
-
-// use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
 
 Route::prefix("auth")->group(
   function () {
@@ -28,36 +23,42 @@ Route::prefix("auth")->group(
   }
 );
 
+Route::middleware('auth.jwt')->prefix("cargos")->group(
+  function () {
+    Route::get("/", [CargoController::class, 'index'])->name('index');
+    Route::get("/forselect", [CargoController::class, 'forSelect'])->name('forselect');
+    Route::get("/{cargo}", [CargoController::class, 'get'])->name('get');
+    Route::post("/", [CargoController::class, 'store'])->name('store');
+    Route::post("/{cargo}", [CargoController::class, 'update'])->name('update');
+    Route::delete("/{cargo}", [CargoController::class, 'destroy'])->name('delete');
+  }
+);
 
-Route::get('preview', function () {
+Route::middleware('auth.jwt')->prefix("votantes")->group(
+  function () {
+    Route::get("/", [VotanteController::class, 'index'])->name('index');
+    Route::get("/forselect", [VotanteController::class, 'forSelect'])->name('forselect');
+    Route::get("/{votante}", [VotanteController::class, 'get'])->name('get');
+    Route::post("/", [VotanteController::class, 'store'])->name('store');
+    Route::post("/{votante}", [VotanteController::class, 'update'])->name('update');
+    Route::delete("/{votante}", [VotanteController::class, 'destroy'])->name('delete');
+  }
+);
 
-  $inventory = Inventory::find(2);
-  $user = $inventory->user->name;
-  $data = ['email' => 'mdgrisalez@misena.edu.co', 'vendor' => $inventory->user->name, 'code' => $inventory->id];
-  Mail::to($data['email'])->send(new EmailInventory($data));
 
-  return response()->json($user);
-});
+// Route::get('preview', function () {
+//   $inventory = Inventory::find(2);
+//   $user = $inventory->user->name;
+//   $data = ['email' => 'mdgrisalez@misena.edu.co', 'vendor' => $inventory->user->name, 'code' => $inventory->id];
+//   Mail::to($data['email'])->send(new EmailInventory($data));
+//   return response()->json($user);
+// });
 
-Route::get('qr-code-g', function () {
-
-  // $image = \QrCode::backgroundColor(255, 255, 0)->color(255, 0, 127)
-  //   ->format('png')
-  //   // ->merge(public_path('/imgs/inventory.png'), 0.3, true)
-  //   ->size(500)
-  //   ->generate('ItSolutionStuff.com',  public_path('/imgs/' . '123.png'));
-  // return response($image)->header('Content-type', 'image/png');
-});
 
 
 Route::get('/clear-cache', function () {
-
   $exitCode = Artisan::call('config:clear');
-
   $exitCode = Artisan::call('cache:clear');
-
   $exitCode = Artisan::call('config:cache');
-
   return 'DONE'; //Return anything
-
 });
